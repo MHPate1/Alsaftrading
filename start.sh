@@ -2,6 +2,8 @@
 
 echo "Starting container..."
 
+cd perfume_store
+
 # Apply database migrations
 echo "Running migrations..."
 python manage.py migrate --noinput
