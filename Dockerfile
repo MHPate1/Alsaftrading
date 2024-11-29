@@ -18,6 +18,6 @@ RUN python perfume_store/manage.py collectstatic --noinput
 COPY start.sh .
 RUN chmod +x start.sh
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["./start.sh"]

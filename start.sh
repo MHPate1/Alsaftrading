@@ -10,4 +10,4 @@ python manage.py migrate --noinput
 
 # Start the Django application
 echo "Starting the application..."
-gunicorn --bind 0.0.0.0:8000 perfume_store.wsgi:application
+gunicorn --bind 0.0.0.0:8080 perfume_store.wsgi:application
