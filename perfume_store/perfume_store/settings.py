@@ -9,7 +9,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1', 
     'localhost',
     '686d-82-132-187-60.ngrok-free.app',
-      'alsaftrading.vercel.app' , # Replace with your actual Ngrok domain
+    'alsaftrading.vercel.app' , 
+    'alsaftrading-900247810812.europe-west1.run.app',
 ]
 
 
