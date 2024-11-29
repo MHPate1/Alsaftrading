@@ -1,0 +1,115 @@
+
+{% extends 'store/base.html' %}
+
+{% block content %}
+<section class="shop-hero">
+    <div class="shop-hero-content">
+        <h1>Liked Products</h1>
+    </div>
+</section>
+
+
+<div class="liked-container">
+    <div class="products-grid">
+        {% if liked_products %}
+            {% for product in liked_products %}
+            <div class="product-card" data-category="{{ product.category }}">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <div class="price-heart-container">
+                        <p class="price">£{{ product.price }}</p>
+                        <button class="heart-btn active" data-product-id="{{ product.id }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-likes">
+                <h2>No liked products yet</h2>
+                <p>Start exploring our products and add some to your favorites!</p>
+                <a href="{% url 'store:shop' %}" class="btn">Shop Now</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        
+        // Redirect to the same page with favorites as query parameter
+        if (window.location.search === '') {
+            window.location.href = `?favorites=${JSON.stringify(favorites)}`;
+        }
+    
+        // Heart button functionality
+        const heartButtons = document.querySelectorAll('.heart-btn');
+        heartButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productId = this.dataset.productId;
+                let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                
+                // Remove from favorites
+                favorites = favorites.filter(id => id !== productId);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                
+                // Remove the product card
+                const card = this.closest('.product-card');
+                card.remove();
+                
+                // Check if there are any products left
+                if (document.querySelectorAll('.product-card').length === 0) {
+                    document.getElementById('liked-products-grid').innerHTML = `
+                        <div class="no-likes">
+                            <h2>No liked products yet</h2>
+                            <p>Start exploring our products and add some to your favorites!</p>
+                            <a href="{% url 'store:shop' %}" class="btn">Shop Now</a>
+                        </div>
+                    `;
+                }
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    const heartButtons = document.querySelectorAll('.heart-btn');
+    
+    heartButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const productId = this.dataset.productId;
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            
+            // Remove from favorites
+            favorites = favorites.filter(id => id !== productId);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            
+            // Remove card with animation
+            const card = this.closest('.product-card');
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                card.remove();
+                
+                // Check if any cards left
+                if (document.querySelectorAll('.product-card').length === 0) {
+                    location.reload(); // Reload to show no likes message
+                }
+            }, 300);
+        });
+    });
+    
+    // Check URL parameters on load
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (window.location.search === '' && favorites.length > 0) {
+        window.location.href = `?favorites=${JSON.stringify(favorites)}`;
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+/* Heart Button Styles */
+.heart-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart-btn:hover {
+    transform: scale(1.1);
+}
+
+.heart-btn.active {
+    color: #ff4b4b;
+}
+
+.heart-btn svg {
+    transition: all 0.3s ease;
+}
+
+.heart-btn.active svg {
+    fill: #ff4b4b;
+    color: #ff4b4b;
+}
+
+.price-heart-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Product Card Transitions */
+.product-card {
+    transition: all 0.3s ease;
+}
+
+/* Liked Container */
+.liked-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* No Likes Message */
+.no-likes {
+    text-align: center;
+    padding: 4rem 2rem;
+    grid-column: 1 / -1;
+}
+
+.no-likes h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.no-likes p {
+    margin-bottom: 2rem;
+    color: #666;
+}

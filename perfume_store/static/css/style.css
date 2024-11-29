@@ -1,0 +1,402 @@
+/* Root Variables */
+:root {
+    --primary-color: #47B5FF;
+    --secondary-color: #FF69B4;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 1.5rem; /* Reduced padding for a thinner navbar */
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Slightly lighter shadow for a cleaner look */
+    position: relative;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem; /* Slightly smaller font for a compact look */
+    color: var(--primary-color);
+    font-weight: bold;
+    width: 100px; /* Reduced logo size */
+    height: auto;
+    margin-right: 8px; /* Slightly reduced margin */
+    display: inline-block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem; /* Reduced gap between links */
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem; /* Reduced font size for sleeker links */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.icons {
+    display: flex;
+    gap: 0.8rem; /* Reduced gap between icons */
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/perfumebackground.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwvcGVyZnVtZWJhY2tncm91bmQuanBnIiwiaWF0IjoxNzMyNjM5NDUyLCJleHAiOjE3NjQxNzU0NTJ9.WT01uhE49VuiLghvmWJOpPprzODPRnrtdus0eX49pao&t=2024-11-26T16%3A44%3A12.843Z') center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+    color: white;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Category Cards */
+.category-section {
+    background-color: #fffcfc; /* Light grey background */
+    width: 100%;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.category-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+.card {
+    background: #1a1a1a; /* Dark background */
+    padding: 3rem; /* Increased padding */
+    border-radius: 24px; /* Increased border radius for softer corners */
+    color: white;
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.card h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem; /* Larger text size */
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.card span {
+    display: block; /* Put second line on new line */
+}
+
+.card p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.gifts {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/gifts.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwvZ2lmdHMuanBnIiwiaWF0IjoxNzMyNjM5NzExLCJleHAiOjE3NjQxNzU3MTF9.nT9vvfQ9YNuaV8gNp6FC9qOcFcqZ_iBcu-TJzbpsWJ8&t=2024-11-26T16%3A48%3A31.859Z');
+}
+
+.kids {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/kids.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwva2lkcy5qcGciLCJpYXQiOjE3MzI2Mzk3MjgsImV4cCI6MTc2NDE3NTcyOH0.xG99tECAMH1e5M8zzqHltKbBy_EQI3ZYmjnqKYWj8oA&t=2024-11-26T16%3A48%3A48.942Z');
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    background: var(--primary-color);  /* Blue background */
+    color: white;  /* White text */
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    min-width: 120px;
+    max-width: fit-content;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(71, 181, 255, 0.3); 
+    opacity: 0.9;  
+}
+
+/* Trending Section */
+.trending {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.trending h2 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;  /* Increased font size */
+    font-weight: 600;
+    margin-bottom: 0.5rem;  /* Space for underline */
+    color: #333;
+    position: relative;
+    padding-bottom: 1rem;  /* Space for underline */
+}
+
+/* Custom underline for Top Trending */
+.trending h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;  /* Width of underline */
+    height: 4px;  /* Thickness of underline */
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;  /* Increased spacing between buttons */
+    margin: 2rem 0;
+}
+
+.filter-btn {
+    background: transparent;
+    color: #333;  /* Dark gray for inactive state */
+    padding: 0.6rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    border: none;  /* Remove border */
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 4px rgba(71, 181, 255, 0.2);  /* Subtle shadow when active */
+}
+
+/* Hover State for Inactive Buttons */
+.filter-btn:not(.active):hover {
+    color: var(--primary-color);
+}
+
+.filter-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr)); /* Increased card size */
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.product-card {
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    height: 350px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;  /* Added to show it's clickable */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: -webkit-transform 0.8s; /* Add webkit prefix */
+    transition: transform 0.8s;
+    -webkit-transform-style: preserve-3d; /* Add webkit prefix */
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.product-card:hover .card-inner {
+    -webkit-transform: rotateY(180deg); /* Add webkit prefix */
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Add webkit prefix */
+    backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-back {
+    -webkit-transform: rotateY(180deg); /* Add webkit prefix */
+    transform: rotateY(180deg);
+}
+
+.card-front img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    pointer-events: none;  /* Prevent image from capturing clicks */
+}
+
+.card-front h3, 
+.card-back h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0.8rem;
+    text-align: center;
+    pointer-events: none;  /* Prevent text from capturing clicks */
+}
+
+.card-front .brand,
+.card-back .brand {
+    font-family: 'Montserrat', sans-serif;
+    color: #666;
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0.4rem;
+    pointer-events: none;
+}
+
+.card-front .price,
+.card-back .price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: rgb(180, 1, 1);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0.4rem;
+    margin-top: auto;  /* Push price to bottom */
+    padding-bottom: 1rem;
+    pointer-events: none;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* Footer */
+.footer {
+    background: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+

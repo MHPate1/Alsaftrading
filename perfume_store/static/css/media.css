@@ -1,0 +1,250 @@
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+    }
+    
+    .category-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive Design for max-width 580px */
+@media (max-width: 580px) {
+    /* Hero Section */
+    .hero {
+        height: 70vh;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+        line-height: 1.4;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .navbar .menu-toggle {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        cursor: pointer;
+        display: block;
+        margin-top: 0.5rem;
+    }
+
+    /* Category Section */
+    .category-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card {
+        min-height: 240px;
+        padding: 2rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .card h2 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    .card p {
+        font-size: 1.1rem;
+    }
+
+    .card .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.2rem;
+    }
+
+    /* Trending Section */
+    .trending h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .filter-buttons {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        padding: 0 1rem;
+    }
+
+    .filter-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .product-card {
+        height: 300px;  /* Reduced height for mobile */
+        max-width: 260px;
+    }
+
+    .card-front img {
+        height: 180px;  /* Reduced image height */
+    }
+
+    .card-front h3,
+    .card-back h3 {
+        font-size: 1rem;
+        margin: 0.6rem;
+    }
+
+    .card-front .brand,
+    .card-back .brand {
+        font-size: 0.8rem;
+        margin: 0.3rem;
+    }
+
+    .card-front .price,
+    .card-back .price {
+        font-size: 1rem;
+        margin: 0.3rem;
+        padding-bottom: 0.8rem;  /* Reduced bottom padding */
+        margin-top: auto;  /* Ensure price stays at bottom */
+    }
+
+    .card-back {
+        padding: 1rem;
+    }
+
+    .card-back .btn {
+        margin-top: 0.5rem;  /* Reduced top margin */
+    }
+
+    /* Contact Section */
+    .contact-banner {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .contact-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .contact-item {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-item svg {
+        margin-bottom: 0.5rem;
+    }
+
+
+    /* Reviews Section */
+    .reviews h2 {
+        font-size: 2.2rem;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .review-card {
+        padding: 1.5rem;
+        font-size: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .stars {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Footer Section */
+    .footer {
+        padding: 1.5rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-links a {
+        font-size: 0.9rem;
+    }
+
+    .social-icons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-inner {
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+}

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gift.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/review.css' %}">
+    <link rel="stylesheet" href="{% static 'css/media.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/like.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'store:home' %}" > 
+            <img class="logo" src="https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/logo.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwvbG9nby5qcGciLCJpYXQiOjE3MzI4MTQ4MTYsImV4cCI6MTc2NDM1MDgxNn0.aaEyqY5ySgz6SElEwo6sD-9QlHdN58vFSfJZSvvJ6w0&t=2024-11-28T17%3A26%3A57.478Z" alt="Perfume Logo"> 
+        </a>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="nav-links">
+            <a href="{% url 'store:shop' %}">Gemstones</a>
+            <a href="{% url 'store:shop' %}">Jewellery</a>
+            <a href="{% url 'store:shop' %}">Perfumes</a>
+            <a href="{% url 'store:shop' %}">Gift Sets</a>
+            <div class="icons">
+                <a href="{% url 'store:liked' %}" class="heart-icon">♥</a>
+                <a href="{% url 'store:cart' %}" class="cart-icon">🛒</a>
+            </div>
+        </div>
+    </nav>
+    
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="{% url 'store:shop' %}" class="social-icon">Facebook</a>
+            <a href="{% url 'store:shop' %}" class="social-icon">Instagram</a>
+            <a href="{% url 'store:shop' %}" class="social-icon">Twitter</a>
+            <a href="{% url 'store:shop' %}" class="social-icon">WhatsApp</a>
+            <a href="{% url 'store:shop' %}" class="social-icon">TikTok</a>
+        </div>
+        <div class="footer-links">
+            <a href="{% url 'store:shop' %}">Home</a>
+            <a href="{% url 'store:shop' %}">Gemstones</a>
+            <a href="{% url 'store:shop' %}">Jewellery</a>
+            <a href="{% url 'store:shop' %}">Perfume</a>
+            <a href="{% url 'store:shop' %}">Gift Sets</a>
+        </div>
+    </footer>
+</body>
+</html>

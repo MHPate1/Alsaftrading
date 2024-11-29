@@ -1,0 +1,185 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Fragrance in<br>a bottle</h1>
+        <p>A collection of heavenly fragrances</p>
+        <a href="{% url 'store:shop' %}" class="btn">SHOP NOW</a>
+    </div>
+</section>
+
+<section class="category-section">
+    <div class="category-cards">
+        <div class="card gifts">
+            <h2>Gifts <span>for all</span></h2>
+            <p>Explore our collection of special gifts</p>
+            <a href="{% url 'store:shop' %}" class="btn">SHOP GIFTS</a>
+        </div>
+
+        <div class="card kids">
+            <h2>Shop <span>for Kids</span></h2>
+            <p>Explore our kids collection</p>
+            <a href="{% url 'store:shop' %}" class="btn">SHOP KIDS</a>
+        </div>
+    </div>
+</section>
+
+<section class="trending">
+    <h2>Top Trending</h2>
+    <div class="filter-buttons">
+        <button class="filter-btn {% if current_category == 'Gemstones' %}active{% endif %}" 
+                data-category="Gemstones">Gemstones</button>
+        <button class="filter-btn {% if current_category == 'Jewellery' %}active{% endif %}" 
+                data-category="Jewellery">Jewellery</button>
+        <button class="filter-btn {% if current_category == 'Perfume' %}active{% endif %}" 
+                data-category="Perfume">Perfume</button>
+    </div>
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ product.image }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p class="brand">{{ product.brand }}</p>
+                    <p class="price">£{{ product.price }}</p>
+                </div>
+                <div class="card-back">
+                    <h3>{{ product.name }}</h3>
+                    <p class="brand">{{ product.brand }}</p>
+                    <p class="price">£{{ product.price }}</p>
+                    <a href="{% url 'store:shop' %}" class="btn">View More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // Function to attach card flip listeners
+    function attachCardFlipListeners() {
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.card-inner').style.transform = 'rotateY(180deg)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.card-inner').style.transform = 'rotateY(0deg)';
+            });
+            card.addEventListener('click', () => {
+                const inner = card.querySelector('.card-inner');
+                inner.style.transform = inner.style.transform === 'rotateY(180deg)'
+                    ? 'rotateY(0deg)'
+                    : 'rotateY(180deg)';
+            });
+        });
+    }
+
+    // Initial setup to attach card listeners
+    attachCardFlipListeners();
+
+    // Attach filter button click listeners
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Get the category and update the URL
+            const category = button.dataset.category;
+
+            // Fetch new products using AJAX
+            fetch(`/?category=${category}`)
+                .then(response => response.text())
+                .then(html => {
+                    // Parse the response and replace product grid content
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const newGrid = doc.querySelector('.product-grid');
+
+                    if (newGrid) {
+                        document.querySelector('.product-grid').innerHTML = newGrid.innerHTML;
+
+                        // Reattach card flip listeners for new cards
+                        attachCardFlipListeners();
+                    }
+                })
+                .catch(error => console.error('Error fetching new products:', error));
+        });
+    });
+});
+
+
+
+</script>
+
+<section class="contact-banner">
+    <div class="contact-content">
+        <h2>Get in Touch Now</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <a href="tel:+441234567890">+44 7754 978245</a>
+            </div>
+            <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <a href="mailto:info@yourstore.com">info@yourstore.com</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gift-sets">
+    <h2>Gift Sets</h2>
+    <div class="product-grid">
+        {% for gift in gift_sets %}
+        <div class="product-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ gift.image }}" alt="{{ gift.name }}">
+                    <h3>{{ gift.name }}</h3>
+                    <p class="brand">{{ gift.brand }}</p>
+                    <p class="price">£{{ gift.price }}</p>
+                </div>
+                <div class="card-back">
+                    <h3>{{ gift.name }}</h3>
+                    <p class="brand">{{ gift.brand }}</p>
+                    <p class="price">£{{ gift.price }}</p>
+                    <a href="{% url 'store:shop' %}" class="btn">View More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="reviews">
+    <h2>What people have said</h2>
+    <div class="review-grid">
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>Very helpful and friendly man who owns the shop. Always offers good service and advice too.</p>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>I highly recommend this shop for anyone wanting jewellery and exceptional customer service.</p>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>Their perfume collection is simply stunning, and the offers and gift sets are gorgeous.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
