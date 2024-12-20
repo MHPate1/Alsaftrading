@@ -11,6 +11,7 @@ ALLOWED_HOSTS = [
     '686d-82-132-187-60.ngrok-free.app',
     'alsaftrading.vercel.app' , 
     'alsaftrading-900247810812.europe-west1.run.app',
+    'giftoutlet.co.uk'
 ]
 
 
