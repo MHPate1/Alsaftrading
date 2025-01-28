@@ -1,0 +1,202 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<div class="single-product">
+    <div class="success-message" id="success-message">
+        <div class="success-content">
+            <h3>Added to Cart!</h3>
+            <p class="message-text"></p>
+            <div class="message-buttons">
+                <button onclick="window.location.href='{% url 'store:cart' %}'" class="btn">Go to Cart</button>
+                <button onclick="hideMessage()" class="btn continue-shopping">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+   
+   <div class="product-details">
+    <div class="product-image">
+        <img src="{{ product.image }}" alt="{{ product.name }}" id="mainImage">
+        <div class="thumbnail-gallery">
+            <img src="{{ product.image }}" alt="{{ product.name }}" class="thumbnail active" onclick="changeImage(this.src)">
+            <img src="{{ product.image2 }}" alt="{{ product.name }}" class="thumbnail" onclick="changeImage(this.src)">
+            <img src="{{ product.image3 }}" alt="{{ product.name }}" class="thumbnail" onclick="changeImage(this.src)">
+        </div>
+    </div>
+       <div class="product-info">
+           <h1>{{ product.name }}</h1>
+           <p class="brand">{{ product.brand }}</p>
+           <p class="price">£{{ product.price }}</p>
+           <p class="description">{{ product.description }}</p>
+           
+           <div class="quantity-selector">
+               <label for="quantity">Quantity:</label>
+               <select id="quantity" name="quantity">
+                   {% for i in "12345" %}
+                   <option value="{{ i }}">{{ i }}</option>
+                   {% endfor %}
+               </select>
+           </div>
+           
+           <button class="add-to-cart-btn btn" 
+                   data-id="{{ product.id }}"
+                   data-name="{{ product.name }}"
+                   data-price="{{ product.price }}"
+                   data-image="{{ product.image }}"
+                   data-brand="{{ product.brand }}"
+                   data-category="{{ product.category }}">
+               Add to Cart
+           </button>
+       </div>
+   </div>
+</div>
+
+<section class="contact-banner">
+   <div class="contact-content">
+       <h2>Get in Touch Now</h2>
+       <div class="contact-info">
+           <div class="contact-item">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+               </svg>
+               <a href="tel:+441234567890">+44 7754 978245</a>
+           </div>
+           <div class="contact-item">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                   <polyline points="22,6 12,13 2,6"></polyline>
+               </svg>
+               <a href="mailto:info@yourstore.com">support@giftoutlet.co.uk</a>
+           </div>
+       </div>
+   </div>
+</section>
+
+<section class="trending">
+   <h2>You May Also Like</h2>
+   <div class="product-grid">
+       {% for product in trending_products %}
+       <div class="product-card" data-category="{{ product.category }}" data-id="{{ product.id }}">
+           <img src="{{ product.image }}" alt="{{ product.name }}">
+           <div class="product-info">
+               <h3>{{ product.name }}</h3>
+               <div class="price-heart-container">
+                   <p class="price">£{{ product.price }}</p>
+                   <button class="heart-btn" data-product-id="{{ product.id }}">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                       </svg>
+                   </button>
+               </div>
+           </div>
+       </div>
+       {% endfor %}
+   </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+   // Add to cart functionality
+   const addToCartBtn = document.querySelector('.add-to-cart-btn');
+   const quantitySelect = document.querySelector('#quantity');
+
+   addToCartBtn?.addEventListener('click', function() {
+       const productData = {
+           id: this.dataset.id,
+           name: this.dataset.name,
+           price: this.dataset.price,
+           image: this.dataset.image,
+           brand: this.dataset.brand,
+           category: this.dataset.category,
+           quantity: parseInt(quantitySelect.value)
+       };
+       
+       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+       const existingProductIndex = cart.findIndex(item => item.id === productData.id);
+       
+       if (existingProductIndex > -1) {
+           cart[existingProductIndex].quantity = parseInt(cart[existingProductIndex].quantity) + parseInt(productData.quantity);
+       } else {
+           cart.push(productData);
+       }
+       
+       localStorage.setItem('cart', JSON.stringify(cart));
+       
+       const successMessage = document.getElementById('success-message');
+       const messageText = successMessage.querySelector('.message-text');
+       messageText.textContent = `${productData.name} (Quantity: ${productData.quantity}) added to cart!`;
+       successMessage.classList.add('show');
+   });
+
+   // Product card click handler for recommended products
+   const productCards = document.querySelectorAll('.product-card');
+   productCards.forEach(card => {
+       card.addEventListener('click', function(e) {
+           if (e.target.closest('.heart-btn')) return;
+           const category = this.dataset.category;
+           const productId = this.dataset.id;
+           window.location.href = `/product/${category}/${productId}/`;
+       });
+   });
+
+   // Heart button functionality
+   const heartButtons = document.querySelectorAll('.heart-btn');
+   heartButtons.forEach(btn => {
+       const productId = btn.dataset.productId;
+       const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+       
+       if (favorites.includes(productId)) {
+           btn.classList.add('active');
+           btn.querySelector('svg').setAttribute('fill', '#ff4b4b');
+       }
+
+       btn.addEventListener('click', function(e) {
+           e.stopPropagation();
+           const productId = this.dataset.productId;
+           let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+           if (this.classList.contains('active')) {
+               favorites = favorites.filter(id => id !== productId);
+               this.classList.remove('active');
+               this.querySelector('svg').setAttribute('fill', 'none');
+           } else {
+               favorites.push(productId);
+               this.classList.add('active');
+               this.querySelector('svg').setAttribute('fill', '#ff4b4b');
+           }
+
+           localStorage.setItem('favorites', JSON.stringify(favorites));
+       });
+   });
+});
+
+// Close success message functions
+function hideMessage() {
+   const successMessage = document.getElementById('success-message');
+   if (successMessage) {
+       successMessage.classList.remove('show');
+   }
+}
+
+document.addEventListener('click', function(e) {
+   const successMessage = document.getElementById('success-message');
+   if (successMessage && e.target === successMessage) {
+       hideMessage();
+   }
+});
+
+function changeImage(src) {
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    
+    mainImage.src = src;
+    
+    // Update active state
+    thumbnails.forEach(thumb => {
+        thumb.classList.remove('active');
+        if(thumb.src === src) {
+            thumb.classList.add('active');
+        }
+    });
+}
+</script>
+{% endblock %}

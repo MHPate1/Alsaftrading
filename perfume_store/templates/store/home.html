@@ -3,11 +3,66 @@
 {% load static %}
 
 {% block content %}
-<section class="hero">
-    <div class="hero-content">
-        <h1>Fragrance in<br>a bottle</h1>
-        <p>A collection of heavenly fragrances</p>
-        <a href="{% url 'store:shop' %}" class="btn">SHOP NOW</a>
+<section class="hero-slideshow">
+    <div class="slide-container">
+        <!-- Fragrance Slide -->
+        <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/perfumebackground.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwvcGVyZnVtZWJhY2tncm91bmQuanBnIiwiaWF0IjoxNzMyNjM5NDUyLCJleHAiOjE3NjQxNzU0NTJ9.WT01uhE49VuiLghvmWJOpPprzODPRnrtdus0eX49pao&t=2024-11-26T16%3A44%3A12.843Z')">
+            <div class="hero-content">
+                <h1>Fragrance in<br>a bottle</h1>
+                <p>A collection of heavenly fragrances</p>
+                <a href="{% url 'store:shop' %}" class="btn">SHOP NOW</a>
+            </div>
+        </div>
+
+        <!-- Gifts Slide -->
+        <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/gifts.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwvZ2lmdHMuanBnIiwiaWF0IjoxNzMyNjM5NzExLCJleHAiOjE3NjQxNzU3MTF9.nT9vvfQ9YNuaV8gNp6FC9qOcFcqZ_iBcu-TJzbpsWJ8&t=2024-11-26T16%3A48%3A31.859Z')">
+            <div class="hero-content">
+                <h1>Gifts<br>for all</h1>
+                <p>Explore our collection of special gifts</p>
+                <a href="{% url 'store:shop' %}" class="btn">SHOP GIFTS</a>
+            </div>
+        </div>
+
+        <!-- Kids Slide -->
+        <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/kids.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwva2lkcy5qcGciLCJpYXQiOjE3MzI2Mzk3MjgsImV4cCI6MTc2NDE3NTcyOH0.xG99tECAMH1e5M8zzqHltKbBy_EQI3ZYmjnqKYWj8oA&t=2024-11-26T16%3A48%3A48.942Z')">
+            <div class="hero-content">
+                <h1>Shop<br>for Kids</h1>
+                <p>Explore our kids collection</p>
+                <a href="{% url 'store:shop' %}" class="btn">SHOP KIDS</a>
+            </div>
+        </div>
+
+                <!-- Jewellery Slide -->
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/jewellery/jewellery.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL2pld2VsbGVyeS9qZXdlbGxlcnkuanBnIiwiaWF0IjoxNzM2MjY4ODY4LCJleHAiOjE3Njc4MDQ4Njh9.QCUETD9-8_Vp6JKOZEUBPcldwmFpBz9s5u-bzch8fUI&t=2025-01-07T16%3A54%3A28.540Z')">
+                    <div class="hero-content">
+                        <h1>Elegant<br>Jewellery</h1>
+                        <p>Discover our stunning collection</p>
+                        <a href="{% url 'store:shop' %}" class="btn">SHOP JEWELLERY</a>
+                    </div>
+                </div>
+        
+                <!-- Gemstones Slide -->
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/gemstones/gemstones.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL2dlbXN0b25lcy9nZW1zdG9uZXMuanBnIiwiaWF0IjoxNzM2MjY4OTE4LCJleHAiOjE3Njc4MDQ5MTh9.eSTJCB0P806UeHGp0y2w2SBFoebJFoIso-MCkAA-NYw&t=2025-01-07T16%3A55%3A19.625Z')">
+                    <div class="hero-content">
+                        <h1>Natural<br>Gemstones</h1>
+                        <p>Explore our precious stones</p>
+                        <a href="{% url 'store:shop' %}" class="btn">SHOP GEMSTONES</a>
+                    </div>
+                </div>
+
+        <!-- Navigation Arrows -->
+        <button class="slide-arrow prev-slide">❮</button>
+        <button class="slide-arrow next-slide">❯</button>
+
+        <!-- Slide Indicators -->
+        <!-- Update the indicators to match the number of slides -->
+        <div class="slide-indicators">
+            <button class="indicator active"></button>
+            <button class="indicator"></button>
+            <button class="indicator"></button>
+            <button class="indicator"></button>
+            <button class="indicator"></button>
+        </div>
     </div>
 </section>
 
@@ -39,19 +94,19 @@
     </div>
     <div class="product-grid">
         {% for product in products %}
-        <div class="product-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <img src="{{ product.image }}" alt="{{ product.name }}">
-                    <h3>{{ product.name }}</h3>
-                    <p class="brand">{{ product.brand }}</p>
+        <div class="product-card" data-category="{{ product.category }}" data-id="{{ product.id }}" 
+            data-name="{{ product.name }}" data-price="{{ product.price }}" 
+            data-image="{{ product.image }}" data-brand="{{ product.brand }}">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <div class="price-heart-container">
                     <p class="price">£{{ product.price }}</p>
-                </div>
-                <div class="card-back">
-                    <h3>{{ product.name }}</h3>
-                    <p class="brand">{{ product.brand }}</p>
-                    <p class="price">£{{ product.price }}</p>
-                    <a href="{% url 'store:shop' %}" class="btn">View More</a>
+                    <button class="heart-btn" data-product-id="{{ product.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -60,65 +115,99 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const filterButtons = document.querySelectorAll('.filter-btn');
+document.addEventListener('DOMContentLoaded', function() {
+    // Slideshow functionality
+    const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevButton = document.querySelector('.prev-slide');
+    const nextButton = document.querySelector('.next-slide');
+    let currentSlide = 0;
+    let slideInterval = null;
 
-    // Function to attach card flip listeners
-    function attachCardFlipListeners() {
-        const cards = document.querySelectorAll('.product-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.querySelector('.card-inner').style.transform = 'rotateY(180deg)';
-            });
-            card.addEventListener('mouseleave', () => {
-                card.querySelector('.card-inner').style.transform = 'rotateY(0deg)';
-            });
-            card.addEventListener('click', () => {
-                const inner = card.querySelector('.card-inner');
-                inner.style.transform = inner.style.transform === 'rotateY(180deg)'
-                    ? 'rotateY(0deg)'
-                    : 'rotateY(180deg)';
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        showSlide(next);
+    }
+
+    function previousSlide() {
+        const prev = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prev);
+    }
+
+    function startSlideshow() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    prevButton.addEventListener('click', () => {
+        previousSlide();
+        startSlideshow();
+    });
+
+    nextButton.addEventListener('click', () => {
+        nextSlide();
+        startSlideshow();
+    });
+
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showSlide(index);
+            startSlideshow();
+        });
+    });
+
+    startSlideshow();
+
+    // Product card functionality
+    function attachProductCardListeners() {
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.heart-btn')) return;
+                const category = this.dataset.category;
+                const productId = this.dataset.id;
+                window.location.href = `/product/${category}/${productId}/`;
             });
         });
     }
 
-    // Initial setup to attach card listeners
-    attachCardFlipListeners();
-
-    // Attach filter button click listeners
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
     filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-
-            // Get the category and update the URL
             const category = button.dataset.category;
-
-            // Fetch new products using AJAX
+            
             fetch(`/?category=${category}`)
                 .then(response => response.text())
                 .then(html => {
-                    // Parse the response and replace product grid content
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
                     const newGrid = doc.querySelector('.product-grid');
-
                     if (newGrid) {
                         document.querySelector('.product-grid').innerHTML = newGrid.innerHTML;
-
-                        // Reattach card flip listeners for new cards
-                        attachCardFlipListeners();
+                        attachProductCardListeners(); // Reattach event listeners
                     }
-                })
-                .catch(error => console.error('Error fetching new products:', error));
+                });
         });
     });
+
+    // Initial attachment of product card listeners
+    attachProductCardListeners();
 });
-
-
-
 </script>
+
 
 <section class="contact-banner">
     <div class="contact-content">
@@ -135,29 +224,29 @@ document.addEventListener('DOMContentLoaded', function () {
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                <a href="mailto:info@yourstore.com">info@yourstore.com</a>
+                <a href="mailto:info@yourstore.com">support@giftoutlet.co.uk</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="gift-sets">
+<section class="trending gift-sets">
     <h2>Gift Sets</h2>
-    <div class="product-grid">
+    <div class="product-grid">  <!-- Using same product-grid class as trending section -->
         {% for gift in gift_sets %}
-        <div class="product-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <img src="{{ gift.image }}" alt="{{ gift.name }}">
-                    <h3>{{ gift.name }}</h3>
-                    <p class="brand">{{ gift.brand }}</p>
+        <div class="product-card" data-category="Gift sets" data-id="{{ gift.id }}" 
+            data-name="{{ gift.name }}" data-price="{{ gift.price }}" 
+            data-image="{{ gift.image }}" data-brand="{{ gift.brand }}">
+            <img src="{{ gift.image }}" alt="{{ gift.name }}">
+            <div class="product-info">
+                <h3>{{ gift.name }}</h3>
+                <div class="price-heart-container">
                     <p class="price">£{{ gift.price }}</p>
-                </div>
-                <div class="card-back">
-                    <h3>{{ gift.name }}</h3>
-                    <p class="brand">{{ gift.brand }}</p>
-                    <p class="price">£{{ gift.price }}</p>
-                    <a href="{% url 'store:shop' %}" class="btn">View More</a>
+                    <button class="heart-btn" data-product-id="{{ gift.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>

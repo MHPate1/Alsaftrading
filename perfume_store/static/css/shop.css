@@ -285,36 +285,7 @@
 .heart-btn.active svg {
     fill: #ff4b4b;
     stroke: #ff4b4b;
-}
-
-/* Success Message Styles */
-.success-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4caf50; /* Green background for success */
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.9rem;
-    z-index: 1000;
-    opacity: 0; /* Hidden by default */
-    transform: translateX(100%); /* Off-screen by default */
-    transition: all 0.5s ease; /* Smooth transition */
-}
-
-.success-message.show {
-    opacity: 1;
-    transform: translateX(0); /* Slide into view */
-}
-
-.success-message.hide {
-    opacity: 0;
-    transform: translateX(100%); /* Slide out of view */
-}
-
-  
+}  
 
 @media (max-width: 1200px) {
     .products-grid {

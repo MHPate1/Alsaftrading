@@ -138,8 +138,6 @@
 </div>
 
 
-
-
 <script>
 // Category Selection Script
 document.addEventListener('DOMContentLoaded', function() {
@@ -241,60 +239,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     productCards.forEach(card => {
         card.addEventListener('click', function (e) {
-            // Prevent "Add to Favorites" button from triggering the cart functionality
             if (e.target.closest('.heart-btn')) return;
-
-            // Get product details from data attributes
-            const productData = {
-                id: this.dataset.id,
-                name: this.dataset.name,
-                price: this.dataset.price,
-                image: this.dataset.image,
-                brand: this.dataset.brand
-            };
-
-            // Retrieve the current cart from localStorage
-            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-
-            // Check if the product is already in the cart
-            const isInCart = cart.some(item => item.id === productData.id);
-
-            if (!isInCart) {
-                // Add the product to the cart
-                cart.push(productData);
-                localStorage.setItem('cart', JSON.stringify(cart));
-
-                // Show the "Added to Cart" popup
-                const successMessage = document.getElementById('success-message');
-                successMessage.textContent = `${productData.name} added to cart!`;
-                successMessage.classList.add('show');
-
-                // Remove the message after 3 seconds
-                setTimeout(() => {
-                    successMessage.classList.remove('show');
-                }, 3000);
-            } else {
-                // Redirect to the cart page if the product is already in the cart
-                window.location.href = "{% url 'store:cart' %}";
-            }
+            
+            const category = this.dataset.category;
+            const productId = this.dataset.id;
+            window.location.href = `/product/${category}/${productId}/`;
         });
     });
 });
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const successMessage = document.getElementById('success-message');
-
-    // Function to show success message
-    function showSuccessMessage(message) {
-        successMessage.textContent = message || "Product added to cart!";
-        successMessage.classList.add('show');
-
-        // Hide the message after 3 seconds
-        setTimeout(() => {
-            successMessage.classList.remove('show');
-        }, 3000);
-    }
 
     // Handle adding product to cart
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
@@ -323,7 +275,5 @@ document.addEventListener('DOMContentLoaded', function () {
             showSuccessMessage(`${productName} added to cart!`);
         });
     });
-});
-
 </script>
 {% endblock %}
