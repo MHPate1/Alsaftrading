@@ -1,19 +1,45 @@
 import os
 from pathlib import Path
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'your-secret-key'
-DEBUG = True
+# SECURITY SETTINGS
+DEBUG = False  # Set to False for production
+SECRET_KEY = env('SECRET_KEY')  # Move to env variable
+
 ALLOWED_HOSTS = [
-    '127.0.0.1', 
-    'localhost',
-    '686d-82-132-187-60.ngrok-free.app',
-    'alsaftrading.vercel.app' , 
-    'alsaftrading-900247810812.europe-west1.run.app',
-    'giftoutlet.co.uk'
+    'giftoutlet.co.uk',
+    'www.giftoutlet.co.uk'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://giftoutlet.co.uk',
+    'https://www.giftoutlet.co.uk'
+]
+
+# STRIPE SETTINGS
+if DEBUG:
+    STRIPE_PUBLIC_KEY = env('STRIPE_TEST_PUBLIC_KEY')
+    STRIPE_SECRET_KEY = env('STRIPE_TEST_SECRET_KEY')
+    STRIPE_WEBHOOK_SECRET = env('STRIPE_TEST_WEBHOOK_SECRET')
+else:
+    STRIPE_PUBLIC_KEY = env('STRIPE_LIVE_PUBLIC_KEY')
+    STRIPE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY')
+    STRIPE_WEBHOOK_SECRET = env('STRIPE_LIVE_WEBHOOK_SECRET')
+
+# SECURITY MIDDLEWARE SETTINGS
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+X_FRAME_OPTIONS = 'DENY'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -22,25 +48,42 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'store.apps.StoreConfig',  # Add store app
+    'store.apps.StoreConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Above all other middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+# EMAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = f'Gift Outlet <{env("EMAIL_HOST_USER")}>'
+BUSINESS_EMAIL = EMAIL_HOST_USER
 
+# STATIC FILES
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
-ROOT_URLCONF = 'perfume_store.urls'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -57,8 +100,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'perfume_store.wsgi.application'
-
+# DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -66,13 +108,6 @@ DATABASES = {
     }
 }
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+ROOT_URLCONF = 'perfume_store.urls'
+WSGI_APPLICATION = 'perfume_store.wsgi.application'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

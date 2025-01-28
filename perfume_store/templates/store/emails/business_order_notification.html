@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <style>
+       body {
+           margin: 0;
+           padding: 0;
+           background-color: #f7f7f7;
+           font-family: Arial, Helvetica, sans-serif;
+       }
+       
+       .email-container {
+           max-width: 600px;
+           margin: 0 auto;
+           background-color: #ffffff;
+       }
+       
+       .header {
+           background-color: #47B5FF;
+           padding: 30px 0;
+           text-align: center;
+       }
+       
+       .header h1 {
+           color: #ffffff;
+           margin: 0;
+           font-size: 24px;
+           line-height: 30px;
+       }
+       
+       .content {
+           padding: 30px;
+       }
+       
+       .order-number {
+           font-size: 18px;
+           color: #333333;
+           margin-bottom: 25px;
+           font-weight: bold;
+       }
+       
+       .section {
+           background-color: #f8f9fa;
+           border-radius: 4px;
+           padding: 20px;
+           margin-bottom: 20px;
+       }
+       
+       .section h2 {
+           font-size: 16px;
+           color: #333333;
+           margin: 0 0 15px 0;
+       }
+       
+       .product-table {
+           width: 100%;
+           border-collapse: collapse;
+       }
+       
+       .product-table tr {
+           border-bottom: 1px solid #eeeeee;
+       }
+       
+       .product-table td {
+           padding: 12px 8px;
+       }
+       
+       .product-table .price {
+           color: #e4002b;
+           font-weight: bold;
+       }
+       
+       .total-amount {
+           font-size: 16px;
+           font-weight: bold;
+           color: #333333;
+           text-align: right;
+           padding-top: 15px;
+           margin-top: 15px;
+           border-top: 2px solid #dddddd;
+       }
+       
+       .shipping-address {
+           line-height: 1.6;
+       }
+       
+       .footer {
+           text-align: center;
+           padding: 30px;
+           background-color: #f8f9fa;
+           color: #666666;
+           font-size: 14px;
+       }
+   </style>
+</head>
+<body>
+   <div class="email-container">
+       <div class="header">
+           <h1>New Order Received</h1>
+       </div>
+       
+       <div class="content">
+           <div class="order-number">
+               Order #{{ order.order_id }}
+           </div>
+           
+           <div class="section">
+               <h2>Customer Information</h2>
+               <p>{{ order.customer_name }}</p>
+           </div>
+           
+           <div class="section">
+               <h2>Order Details</h2>
+               <table class="product-table">
+                   {% for item in order.items %}
+                   <tr>
+                       <td width="60%"><strong>{{ item.description }}</strong></td>
+                       <td>Qty: {{ item.quantity }}</td>
+                       <td class="price">£{{ item.amount_total|floatformat:2 }}</td>
+                   </tr>
+                   {% endfor %}
+               </table>
+               <div class="total-amount">
+                   Total Amount: £{{ order.total_amount|floatformat:2 }}
+               </div>
+           </div>
+           
+           <div class="section">
+               <h2>Shipping Address</h2>
+               <div class="shipping-address">
+                   <p>{{ order.shipping_address.line1 }}<br>
+                   {% if order.shipping_address.line2 %}
+                   {{ order.shipping_address.line2 }}<br>
+                   {% endif %}
+                   {{ order.shipping_address.city }}<br>
+                   {{ order.shipping_address.postal_code }}<br>
+                   {{ order.shipping_address.country }}</p>
+               </div>
+           </div>
+       </div>
+       
+       <div class="footer">
+           <p>Gift Outlet</p>
+       </div>
+   </div>
+</body>
+</html>

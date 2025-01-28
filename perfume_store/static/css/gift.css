@@ -1,172 +1,40 @@
-/* Gift Sets Section */
-.gift-sets {
+/* Keep and merge these with your trending section styles */
+.trending, .gift-sets {
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.gift-sets h2 {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-bottom: 1rem;
-}
-
-/* Blue Underline */
-.gift-sets h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--primary-color);
-    border-radius: 2px;
-}
-
-/* Product Grid with Updated Card Sizes */
-.gift-sets .product-grid {
+.product-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(300px, 1fr)); /* Match updated card width */
-    gap: 2rem; /* Increased gap for better spacing */
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    gap: 2rem;
     justify-content: center;
     padding: 2rem;
     margin: 0 auto;
 }
 
-/* Gift Sets Product Cards */
-.gift-sets .product-card {
-    perspective: 1000px;
-    height: 350px;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 300px;
-    cursor: pointer;
-}
-
-.gift-sets .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.gift-sets .card-front {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background: white;
-    overflow: hidden;
-}
-
-.gift-sets .product-info {
-    padding: 1rem;
-}
-
-.gift-sets .card-front img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 12px 12px 0 0;
-}
-
-.gift-sets .price-heart-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.gift-sets .price {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: rgb(180, 1, 1);
-    font-size: 1.2rem;
-}
-
-/* Add spacing between sections */
-.gift-sets {
-    margin-top: 4rem;
-}
-
-/* Responsive Adjustments */
+/* Responsive grid adjustments */
 @media (max-width: 1200px) {
-    .gift-sets .product-grid {
-        grid-template-columns: repeat(3, minmax(260px, 1fr)); /* Adjusted for responsiveness */
+    .product-grid {
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
     }
 }
 
 @media (max-width: 900px) {
-    .gift-sets .product-grid {
-        grid-template-columns: repeat(2, minmax(260px, 1fr)); /* Adjusted for responsiveness */
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
     }
 }
 
 @media (max-width: 580px) {
-
-    /* Gift Sets Section */
-    .gift-sets h2 {
-        font-size: 2.2rem;
-        margin-bottom: 1rem;
-    }
-
-    .gift-sets .product-grid {
+    .product-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
 
-    .gift-sets .product-card {
-        height: 300px;  /* Same as other product cards */
+    .product-card {
         max-width: 260px;
-        /* margin: 0 auto;
-        perspective: 1000px;
-        cursor: pointer; */
-    }
-
-    .gift-sets .card-front img {
-        height: 180px;  /* Same as other product cards */
-        object-fit: cover;
-        border-radius: 12px 12px 0 0;
-        pointer-events: none;
-    }
-
-    .gift-sets .card-front h3,
-    .gift-sets .card-back h3 {
-        font-size: 1rem;
-        margin: 0.6rem;
-        pointer-events: none;
-    }
-
-    .gift-sets .card-front .brand,
-    .gift-sets .card-back .brand {
-        font-size: 0.8rem;
-        margin: 0.3rem;
-        pointer-events: none;
-    }
-
-    .gift-sets .card-front .price,
-    .gift-sets .card-back .price {
-        font-size: 1rem;
-        margin: 0.3rem;
-        padding-bottom: 0.8rem;
-        margin-top: auto;
-        pointer-events: none;
-    }
-
-    .gift-sets .card-back {
-        padding: 1rem;
-    }
-
-    .gift-sets .card-back .btn {
-        margin-top: 0.5rem;
+        margin: 0 auto;
     }
 }
-

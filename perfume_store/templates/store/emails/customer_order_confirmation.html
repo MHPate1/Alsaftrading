@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        /* Email-client safe styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        /* Main container */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        
+        /* Header */
+        .header {
+            background-color: #47B5FF;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+            line-height: 30px;
+        }
+        
+        /* Content sections */
+        .content {
+            padding: 30px;
+        }
+        
+        .welcome-message {
+            color: #333333;
+            margin-bottom: 30px;
+            line-height: 24px;
+        }
+        
+        .order-number {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+        
+        /* Product section */
+        .product-container {
+            border: 1px solid #eeeeee;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .product-table td {
+            padding: 10px;
+            vertical-align: top;
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            color: #e4002b;
+            font-weight: bold;
+        }
+        
+        /* Order summary */
+        .order-summary {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .summary-table {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        
+        .summary-table td {
+            padding: 8px 0;
+        }
+        
+        .summary-table .total-row {
+            border-top: 2px solid #dddddd;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Shipping address */
+        .shipping-address {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .shipping-address h2 {
+            font-size: 16px;
+            color: #333333;
+            margin: 0 0 15px 0;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            color: #666666;
+            font-size: 14px;
+            line-height: 21px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>Order Confirmation</h1>
+        </div>
+        
+        <div class="content">
+            <div class="welcome-message">
+                <p>Dear {{ order.customer_name }},</p>
+                <p>Thank you for your order! We're getting everything ready.</p>
+            </div>
+            
+            <div class="order-number">
+                Order #{{ order.order_id }}
+            </div>
+            
+            {% for item in order.items %}
+            <div class="product-container">
+                <table class="product-table">
+                    <tr>
+                        <td width="90">
+                            <img src="{{ item.image }}" alt="{{ item.description }}" class="product-image">
+                        </td>
+                        <td>
+                            <div class="product-name">{{ item.description }}</div>
+                            <div>Quantity: {{ item.quantity }}</div>
+                            <div class="product-price">£{{ item.amount_total|floatformat:2 }}</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+            
+            <div class="order-summary">
+                <table class="summary-table">
+                    <tr>
+                        <td>Subtotal:</td>
+                        <td align="right">£{{ order.subtotal|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping:</td>
+                        <td align="right">£{{ order.shipping_cost|floatformat:2 }}</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Total:</td>
+                        <td align="right">£{{ order.total_amount|floatformat:2 }}</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="shipping-address">
+                <h2>Shipping Address</h2>
+                <p>{{ order.shipping_address.line1 }}<br>
+                {% if order.shipping_address.line2 %}
+                {{ order.shipping_address.line2 }}<br>
+                {% endif %}
+                {{ order.shipping_address.city }}<br>
+                {{ order.shipping_address.postal_code }}<br>
+                {{ order.shipping_address.country }}</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>If you have any questions about your order, please contact us at<br>
+            support@giftoutlet.co.uk</p>
+            <p>Gift Outlet Team</p>
+        </div>
+    </div>
+</body>
+</html>

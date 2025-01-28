@@ -1,0 +1,13 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<div class="success-page">
+    <h1>Payment Successful!</h1>
+    <p>Thank you for your purchase.</p>
+    <a href="{% url 'store:shop' %}" class="btn">Continue Shopping</a>
+</div>
+
+<script>
+    // Clear cart on successful payment
+    localStorage.removeItem('cart');
+</script>
+{% endblock %}
