@@ -67,6 +67,18 @@ body {
     cursor: pointer;
 }
 
+.icons a.tiktok-icon svg {
+    width: 24px;
+    height: auto;
+    fill: #333; /* Base colour */
+    transition: fill 0.3s ease;
+    /* If you want to align it with your cart icon’s size, adjust as needed */
+}
+
+.icons a.tiktok-icon:hover svg {
+    fill: var(--primary-color); /* On hover, match your brand's blue */
+}
+
 /* Hero Section */
 .hero {
     height: 80vh;
