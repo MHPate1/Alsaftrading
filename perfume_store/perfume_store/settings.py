@@ -30,7 +30,7 @@ STRIPE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY')
 STRIPE_WEBHOOK_SECRET = env('STRIPE_LIVE_WEBHOOK_SECRET')
 
 # SECURITY MIDDLEWARE SETTINGS
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
@@ -110,3 +110,20 @@ DATABASES = {
 ROOT_URLCONF = 'perfume_store.urls'
 WSGI_APPLICATION = 'perfume_store.wsgi.application'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+        },
+    },
+}
