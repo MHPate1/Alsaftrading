@@ -13,7 +13,8 @@ SECRET_KEY = env('SECRET_KEY')  # Move to env variable
 
 ALLOWED_HOSTS = [
     'giftoutlet.co.uk',
-    'www.giftoutlet.co.uk'
+    'www.giftoutlet.co.uk',
+    'alsaftrading-900247810812.europe-west1.run.app', 
 ]
 
 CSRF_TRUSTED_ORIGINS = [
