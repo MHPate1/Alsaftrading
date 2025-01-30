@@ -6,4 +6,4 @@ echo "Running migrations..."
 python manage.py migrate --noinput
 
 echo "Starting the application..."
-gunicorn perfume_store.wsgi:application --bind 0.0.0.0:$PORT
+exec gunicorn --bind $HOST:$PORT --workers 2 --threads 8 --timeout 0 perfume_store.wsgi:application

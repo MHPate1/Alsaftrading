@@ -5,6 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE=perfume_store.settings
 ENV PORT 8080
+ENV HOST 0.0.0.0
 
 # Set work directory
 WORKDIR /app
@@ -28,5 +29,5 @@ RUN chmod +x start.sh
 # Port exposure
 EXPOSE ${PORT}
 
-# Start command
-CMD exec gunicorn --bind :${PORT} --workers 3 --threads 8 --timeout 0 perfume_store.wsgi:application
+# Use start.sh as entrypoint
+CMD ["./start.sh"]
