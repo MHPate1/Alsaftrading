@@ -8,7 +8,7 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY SETTINGS
-DEBUG = False  # Set to False for production
+DEBUG = True  # Set to False for production
 SECRET_KEY = env('SECRET_KEY')  # Move to env variable
 
 ALLOWED_HOSTS = [
