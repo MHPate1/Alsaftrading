@@ -13,8 +13,6 @@ RUN apt-get update && apt-get install -y gcc libpq-dev
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python perfume_store/manage.py collectstatic --noinput
-
 COPY start.sh .
 RUN chmod +x start.sh
 
