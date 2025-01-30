@@ -84,7 +84,7 @@ class ShopView(TemplateView):
         
         # Get products from all categories
         products = []
-        tables = ['Gemstones', 'Jewellery', 'Perfume', 'Kids', 'Gift sets']
+        tables = ['Gemstones', 'Jewellery', 'Perfume', 'Kids', 'Gift sets', 'Oils']
         
         # If 'all' is selected, get from all tables
         if selected_category.lower() == 'all':

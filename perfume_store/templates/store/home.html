@@ -47,6 +47,15 @@
                     </div>
                 </div>
 
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/oils/shilajit.avif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL29pbHMvc2hpbGFqaXQuYXZpZiIsImlhdCI6MTczODI2OTA3MywiZXhwIjoxNzY5ODA1MDczfQ.NExUH9p-tWIjjITNGjCJcgfZEVQ4ceC7tHyixeopBIw&t=2025-01-30T20%3A31%3A15.577Z')">
+                    <div class="hero-content">
+                        <h1>Natural<br>Shilajit</h1>
+                        <p>Explore its amazing benefits</p>
+                        <!-- Link directly to the new category in the shop -->
+                        <a href="{% url 'store:shop' %}?category=Oils" class="btn">SHOP SHILAJIT</a>
+                    </div>
+                </div>
+
         <!-- Navigation Arrows -->
         <button class="slide-arrow prev-slide">❮</button>
         <button class="slide-arrow next-slide">❯</button>
@@ -55,6 +64,7 @@
         <!-- Update the indicators to match the number of slides -->
         <div class="slide-indicators">
             <button class="indicator active"></button>
+            <button class="indicator"></button>
             <button class="indicator"></button>
             <button class="indicator"></button>
             <button class="indicator"></button>
@@ -88,6 +98,9 @@
                 data-category="Jewellery">Jewellery</button>
         <button class="filter-btn {% if current_category == 'Perfume' %}active{% endif %}" 
                 data-category="Perfume">Perfume</button>
+        <!-- New button -->
+        <button class="filter-btn {% if current_category == 'Oils' %}active{% endif %}" 
+                data-category="Oils">Herbs & Oils</button>
     </div>
     <div class="product-grid">
         {% for product in products %}

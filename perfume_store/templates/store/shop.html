@@ -52,6 +52,10 @@
                 <input type="radio" name="category" value="Gift sets" {% if selected_category == 'Gift sets' %}checked{% endif %}>
                 Gift Sets
             </label>
+            <label class="category-option">
+                <input type="radio" name="category" value="Oils" {% if selected_category == 'Oils' %}checked{% endif %}>
+                Herbs & Oils
+            </label>
         </div>
     </aside>
 
@@ -87,6 +91,10 @@
                     <input type="radio" name="category-mobile" value="Gift sets" {% if selected_category == 'Gift sets' %}checked{% endif %}>
                     Gift Sets
                 </label>
+                <label class="category-option">
+                    <input type="radio" name="category-mobile" value="Oils" {% if selected_category == 'Oils' %}checked{% endif %}>
+                    Herbs & Oils
+                </label>
             </div>
         </div>
 
@@ -94,9 +102,13 @@
         <div class="shop-products">
             <div class="products-grid">
                 {% for product in products %}
-                <div class="product-card" data-category="{{ product.category }}" data-id="{{ product.id }}" 
-                    data-name="{{ product.name }}" data-price="{{ product.price }}" 
-                    data-image="{{ product.image }}" data-brand="{{ product.brand }}">
+                <div class="product-card" 
+                     data-category="{{ product.category }}" 
+                     data-id="{{ product.id }}" 
+                     data-name="{{ product.name }}" 
+                     data-price="{{ product.price }}" 
+                     data-image="{{ product.image }}" 
+                     data-brand="{{ product.brand }}">
                     <img src="{{ product.image }}" alt="{{ product.name }}">
                     <div class="product-info">
                         <h3>{{ product.name }}</h3>
@@ -137,11 +149,10 @@
     </div>
 </div>
 
-
 <script>
-// Category Selection Script
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle desktop category selection
+
+    /* ----------------- CATEGORY SELECTION (Desktop + Mobile) ----------------- */
     const categoryInputs = document.querySelectorAll('.categories-sidebar input[type="radio"]');
     categoryInputs.forEach(input => {
         input.addEventListener('change', function() {
@@ -151,19 +162,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Handle mobile category selection
     const mobileCategoryInputs = document.querySelectorAll('.mobile-categories input[type="radio"]');
     mobileCategoryInputs.forEach(input => {
         input.addEventListener('change', function() {
             if (this.checked) {
                 window.location.href = `?category=${this.value}`;
-                document.querySelector('.category-dropdown-content').classList.remove('show');
-                document.querySelector('.category-dropdown-btn').classList.remove('active');
+                dropdownContent.classList.remove('show');
+                dropdownBtn.classList.remove('active');
             }
         });
     });
 
-    // Mobile dropdown functionality
+    // Mobile dropdown
     const dropdownBtn = document.querySelector('.category-dropdown-btn');
     const dropdownContent = document.querySelector('.category-dropdown-content');
 
@@ -182,32 +192,43 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownContent.addEventListener('click', function(event) {
         event.stopPropagation();
     });
-});
 
-// Search and Heart Button Script
-document.addEventListener('DOMContentLoaded', function() {
-    // Search functionality
+    /* ----------------- SEARCH FUNCTIONALITY ----------------- */
     const searchInput = document.getElementById('product-search');
+    const searchBtn   = document.querySelector('.search-btn');
     const productCards = document.querySelectorAll('.product-card');
 
-    searchInput.addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
+    function filterProducts(searchTerm) {
         productCards.forEach(card => {
-            const productName = card.querySelector('h3').textContent.toLowerCase();
-            if (productName.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+            const productName  = (card.querySelector('h3')?.textContent || '').toLowerCase();
+            const productBrand = (card.dataset.brand || '').toLowerCase();
+            const productPrice = (card.dataset.price || '').toLowerCase();
+            const combinedText = `${productName} ${productBrand} ${productPrice}`;
+
+            // Show/hide based on search
+            card.style.display = combinedText.includes(searchTerm) ? '' : 'none';
         });
+    }
+
+    // Search on typing
+    searchInput.addEventListener('input', function() {
+        const term = this.value.trim().toLowerCase();
+        filterProducts(term);
     });
 
-    // Heart button functionality
+    // Search on button click
+    searchBtn.addEventListener('click', function() {
+        const term = searchInput.value.trim().toLowerCase();
+        filterProducts(term);
+    });
+
+    /* ----------------- HEART / FAVOURITES FUNCTION ----------------- */
     const heartButtons = document.querySelectorAll('.heart-btn');
     heartButtons.forEach(btn => {
         const productId = btn.dataset.productId;
-        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-        
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+        // If already in favorites, style it
         if (favorites.includes(productId)) {
             btn.classList.add('active');
             btn.querySelector('svg').setAttribute('fill', '#ff4b4b');
@@ -227,40 +248,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('active');
                 this.querySelector('svg').setAttribute('fill', '#ff4b4b');
             }
-
             localStorage.setItem('favorites', JSON.stringify(favorites));
         });
     });
-});
 
-// Product Card Click Script
-document.addEventListener('DOMContentLoaded', function () {
-    const productCards = document.querySelectorAll('.product-card');
-
+    /* ----------------- PRODUCT CARD CLICK (Go to Single Product) ----------------- */
     productCards.forEach(card => {
-        card.addEventListener('click', function (e) {
+        card.addEventListener('click', function(e) {
             if (e.target.closest('.heart-btn')) return;
-            
             const category = this.dataset.category;
             const productId = this.dataset.id;
             window.location.href = `/product/${category}/${productId}/`;
         });
     });
-});
 
-    // Handle adding product to cart
+    /* ----------------- ADD TO CART BUTTONS (If you have them on this page) ----------------- */
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    addToCartButtons.forEach((btn) => {
-        btn.addEventListener('click', function () {
-            const productId = this.dataset.id;
+    addToCartButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productId   = this.dataset.id;
             const productName = this.dataset.name;
-            const productPrice = this.dataset.price;
-            const productImage = this.dataset.image;
+            const productPrice= this.dataset.price;
+            const productImage= this.dataset.image;
 
-            // Get cart from localStorage
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-            // Add product to cart
+            // Add product
             cart.push({
                 id: productId,
                 name: productName,
@@ -268,12 +281,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 image: productImage,
             });
 
-            // Save back to localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
-
+            
             // Show success message
             showSuccessMessage(`${productName} added to cart!`);
         });
     });
+});
 </script>
 {% endblock %}
