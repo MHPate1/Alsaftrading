@@ -40,26 +40,3 @@
     transition: all 0.3s ease;
 }
 
-/* Liked Container */
-.liked-container {
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* No Likes Message */
-.no-likes {
-    text-align: center;
-    padding: 4rem 2rem;
-    grid-column: 1 / -1;
-}
-
-.no-likes h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.no-likes p {
-    margin-bottom: 2rem;
-    color: #666;
-}
