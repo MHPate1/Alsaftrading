@@ -4,10 +4,11 @@ echo "Starting container..."
 
 cd perfume_store
 
-# Apply database migrations
+echo "Collecting static..."
+python manage.py collectstatic --noinput
+
 echo "Running migrations..."
 python manage.py migrate --noinput
 
-# Start the Django application
-echo "Starting the application..."
-gunicorn --bind 0.0.0.0:8080 perfume_store.wsgi:application
+echo "Launching application..."
+gunicorn perfume_store.wsgi:application --bind 0.0.0.0:8080
