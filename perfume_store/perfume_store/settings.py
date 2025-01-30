@@ -8,14 +8,14 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY SETTINGS
-DEBUG = False  # Set to False for production
-SECRET_KEY = env('SECRET_KEY')  # Move to env variable
+DEBUG = False  # Production
+SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = [
     'giftoutlet.co.uk',
     'www.giftoutlet.co.uk',
     'alsaftrading-900247810812.europe-west1.run.app',
-    '*',  # Temporarily add this for testing
+    '*',  # Temporarily for testing, remove later
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -24,15 +24,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://alsaftrading-900247810812.europe-west1.run.app',
 ]
 
-# STRIPE SETTINGS
-if DEBUG:
-    STRIPE_PUBLIC_KEY = env('STRIPE_TEST_PUBLIC_KEY')
-    STRIPE_SECRET_KEY = env('STRIPE_TEST_SECRET_KEY')
-    STRIPE_WEBHOOK_SECRET = env('STRIPE_TEST_WEBHOOK_SECRET')
-else:
-    STRIPE_PUBLIC_KEY = env('STRIPE_LIVE_PUBLIC_KEY')
-    STRIPE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY')
-    STRIPE_WEBHOOK_SECRET = env('STRIPE_LIVE_WEBHOOK_SECRET')
+# STRIPE SETTINGS: Always use live keys
+STRIPE_PUBLIC_KEY = env('STRIPE_LIVE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = env('STRIPE_LIVE_WEBHOOK_SECRET')
 
 # SECURITY MIDDLEWARE SETTINGS
 SECURE_SSL_REDIRECT = True
@@ -57,7 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Above all other middleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Just after security
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
