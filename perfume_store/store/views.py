@@ -131,40 +131,6 @@ class ShopView(TemplateView):
     
 from django.http import JsonResponse
 
-# class LikedView(TemplateView):
-#     template_name = 'store/liked.html'
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         favorites = self.request.GET.get('favorites', '[]')  # Get favorites from query params
-#         liked_product_ids = eval(favorites)  # Convert string to list
-#         liked_products = []
-        
-#         # Get all products from all tables
-#         tables = ['Gemstones', 'Jewellery', 'Perfume', 'Kids', 'Gift sets']
-        
-#         for table in tables:
-#             try:
-#                 response = supabase.table(table).select("*").execute()
-#                 if response.data:
-#                     for item in response.data:
-#                         # Only add product if its ID is in favorites
-#                         if str(item['id']) in liked_product_ids:
-#                             liked_products.append({
-#                                 'id': item['id'],
-#                                 'name': item['product'],
-#                                 'price': item['price'],
-#                                 'brand': item['brand'],
-#                                 'image': item['image'],
-#                                 'category': table
-#                             })
-#             except Exception as e:
-#                 print(f"Error fetching {table}: {str(e)}")
-        
-#         context['liked_products'] = liked_products
-#         return context
-    
-
 class CartView(TemplateView):
     template_name = 'store/cart.html'
     
