@@ -71,6 +71,22 @@
             <button class="indicator"></button>
         </div>
     </div>
+
+        <!-- Popup container holding both banners -->
+    <div class="popup-container">
+        <!-- TikTok Banner -->
+        <div class="promo-banner" id="tiktok-banner">
+            <span class="close-btn" data-close="tiktok-banner">×</span>
+            <p>Follow us on <strong>TikTok</strong>!</p>
+            <a href="https://www.tiktok.com/@mighty.gemstones" target="_blank" rel="noopener">@mighty.gemstones</a>
+        </div>
+
+        <!-- Shipping Banner -->
+        <div class="promo-banner" id="shipping-banner">
+            <span class="close-btn" data-close="shipping-banner">×</span>
+            <p>Free Shipping on orders over £15!</p>
+        </div>
+    </div>
 </section>
 
 <section class="category-section">
@@ -216,6 +232,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial attachment of product card listeners
     attachProductCardListeners();
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const closeButtons = document.querySelectorAll('.close-btn');
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const bannerId = this.getAttribute('data-close');
+            const banner   = document.getElementById(bannerId);
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        });
+    });
+});
+
+
 </script>
 
 
