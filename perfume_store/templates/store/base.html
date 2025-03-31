@@ -55,8 +55,47 @@
         }
     </script>
 
+<div id="shilajit-popup" class="popup">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <div class="popup-image">
+            <img src="https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/oils/shilajit.avif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL29pbHMvc2hpbGFqaXQuYXZpZiIsImlhdCI6MTczODI2OTA3MywiZXhwIjoxNzY5ODA1MDczfQ.NExUH9p-tWIjjITNGjCJcgfZEVQ4ceC7tHyixeopBIw&t=2025-01-30T20%3A31%3A15.577Z" alt="Shilajit">
+        </div>
+        <div class="popup-text">
+            <h2>Discover Shilajit</h2>
+            <p>Experience the power of nature with our premium Shilajit. Boost your energy and vitality today!</p>
+            <a href="{% url 'store:shop' %}?category=Oils" class="popup-btn">Shop Shilajit</a>
+        </div>
+    </div>
+</div>
     {% block content %}{% endblock %}
+
+
 
 
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const popup = document.getElementById('shilajit-popup');
+        const closeBtn = document.querySelector('.close-popup');
+    
+        // Show popup after a short delay
+        setTimeout(() => {
+            popup.style.display = 'block';
+        }, 2000); // 2 seconds delay, adjust as needed
+    
+        // Close popup when clicking the close button
+        closeBtn.onclick = function() {
+            popup.style.display = 'none';
+        }
+    
+        // Close popup when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = 'none';
+            }
+        }
+    });
+    </script>

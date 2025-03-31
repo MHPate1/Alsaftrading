@@ -199,7 +199,7 @@ class CheckoutView(View):
             subtotal = float(cart_data.get('total', 0))
             
             # Calculate shipping
-            shipping_cost = 0 if subtotal > 15 else 4.99
+            shipping_cost = 0 if subtotal > 20 else 4.99
             total = subtotal + shipping_cost
 
             line_items = [
