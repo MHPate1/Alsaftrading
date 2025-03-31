@@ -2,8 +2,18 @@
 {% block content %}
 <section class="hero-slideshow">
     <div class="slide-container">
+
+        <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/oils/shilajit.avif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL29pbHMvc2hpbGFqaXQuYXZpZiIsImlhdCI6MTczODI2OTA3MywiZXhwIjoxNzY5ODA1MDczfQ.NExUH9p-tWIjjITNGjCJcgfZEVQ4ceC7tHyixeopBIw&t=2025-01-30T20%3A31%3A15.577Z')">
+            <div class="hero-content">
+                <h1>Natural<br>Shilajit</h1>
+                <p>Explore its amazing benefits</p>
+                <!-- Link directly to the new category in the shop -->
+                <a href="{% url 'store:shop' %}?category=Oils" class="btn">SHOP SHILAJIT</a>
+            </div>
+        </div>
+
         <!-- Fragrance Slide -->
-        <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/perfumebackground.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwvcGVyZnVtZWJhY2tncm91bmQuanBnIiwiaWF0IjoxNzMyNjM5NDUyLCJleHAiOjE3NjQxNzU0NTJ9.WT01uhE49VuiLghvmWJOpPprzODPRnrtdus0eX49pao&t=2024-11-26T16%3A44%3A12.843Z')">
+        <div class="hero-slide " style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/General/perfumebackground.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL0dlbmVyYWwvcGVyZnVtZWJhY2tncm91bmQuanBnIiwiaWF0IjoxNzMyNjM5NDUyLCJleHAiOjE3NjQxNzU0NTJ9.WT01uhE49VuiLghvmWJOpPprzODPRnrtdus0eX49pao&t=2024-11-26T16%3A44%3A12.843Z')">
             <div class="hero-content">
                 <h1>Fragrance in<br>a bottle</h1>
                 <p>A collection of heavenly fragrances</p>
@@ -47,14 +57,6 @@
                     </div>
                 </div>
 
-                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://fezxyrxqjypoubhvmryd.supabase.co/storage/v1/object/sign/Perfume/oils/shilajit.avif?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQZXJmdW1lL29pbHMvc2hpbGFqaXQuYXZpZiIsImlhdCI6MTczODI2OTA3MywiZXhwIjoxNzY5ODA1MDczfQ.NExUH9p-tWIjjITNGjCJcgfZEVQ4ceC7tHyixeopBIw&t=2025-01-30T20%3A31%3A15.577Z')">
-                    <div class="hero-content">
-                        <h1>Natural<br>Shilajit</h1>
-                        <p>Explore its amazing benefits</p>
-                        <!-- Link directly to the new category in the shop -->
-                        <a href="{% url 'store:shop' %}?category=Oils" class="btn">SHOP SHILAJIT</a>
-                    </div>
-                </div>
 
         <!-- Navigation Arrows -->
         <button class="slide-arrow prev-slide">❮</button>
@@ -73,20 +75,20 @@
     </div>
 
         <!-- Popup container holding both banners -->
-    <div class="popup-container">
-        <!-- TikTok Banner -->
-        <div class="promo-banner" id="tiktok-banner">
-            <span class="close-btn" data-close="tiktok-banner">×</span>
-            <p>Follow us on <strong>TikTok</strong>!</p>
-            <a href="https://www.tiktok.com/@mighty.gemstones" target="_blank" rel="noopener">@mighty.gemstones</a>
-        </div>
+<!--    <div class="popup-container">-->
+<!--        &lt;!&ndash; TikTok Banner &ndash;&gt;-->
+<!--        <div class="promo-banner" id="tiktok-banner">-->
+<!--            <span class="close-btn" data-close="tiktok-banner">×</span>-->
+<!--            <p>Follow us on <strong>TikTok</strong>!</p>-->
+<!--            <a href="https://www.tiktok.com/@mighty.gemstones" target="_blank" rel="noopener">@mighty.gemstones</a>-->
+<!--        </div>-->
 
-        <!-- Shipping Banner -->
-        <div class="promo-banner" id="shipping-banner">
-            <span class="close-btn" data-close="shipping-banner">×</span>
-            <p>Free Shipping on orders over £15!</p>
-        </div>
-    </div>
+<!--        &lt;!&ndash; Shipping Banner &ndash;&gt;-->
+<!--        <div class="promo-banner" id="shipping-banner">-->
+<!--            <span class="close-btn" data-close="shipping-banner">×</span>-->
+<!--            <p>Free Shipping on orders over £20!</p>-->
+<!--        </div>-->
+<!--    </div>-->
 </section>
 
 <section class="category-section">
@@ -189,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             startSlideshow();
         });
     });
-
+    showSlide(0)
     startSlideshow();
 
     // Product card functionality
@@ -313,4 +315,391 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </section>
+
+<!-- Enhanced Footer Policy Section -->
+<section class="policy-section">
+    <div class="policy-container">
+        <h3 class="policy-heading">Our Policies</h3>
+        <div class="policy-grid">
+            <div class="policy-card" data-policy="refund">
+                <div class="policy-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 1v22"></path>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <h4 class="policy-card-title">Refund Policy</h4>
+                <p class="policy-card-desc">Learn about our refund process and eligibility criteria.</p>
+                <button class="policy-btn policy-link" data-policy="refund">Read More</button>
+            </div>
+            
+            <div class="policy-card" data-policy="shipping">
+                <div class="policy-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                </div>
+                <h4 class="policy-card-title">Shipping Policy</h4>
+                <p class="policy-card-desc">Information about delivery times and shipping methods.</p>
+                <button class="policy-btn policy-link" data-policy="shipping">Read More</button>
+            </div>
+            
+            <div class="policy-card" data-policy="returns">
+                <div class="policy-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <polyline points="23 20 23 14 17 14"></polyline>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+                    </svg>
+                </div>
+                <h4 class="policy-card-title">Returns</h4>
+                <p class="policy-card-desc">Step-by-step guide to returning products.</p>
+                <button class="policy-btn policy-link" data-policy="returns">Read More</button>
+            </div>
+            
+            <div class="policy-card" data-policy="terms">
+                <div class="policy-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <h4 class="policy-card-title">Terms of Service</h4>
+                <p class="policy-card-desc">Our terms and conditions for using our services.</p>
+                <button class="policy-btn policy-link" data-policy="terms">Read More</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Policy Modal (Keep the existing modal code) -->
+    <div class="policy-modal" id="policy-modal">
+        <div class="policy-modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="policy-title">Policy Title</h2>
+            <div id="policy-content">
+                <!-- Policy content will be loaded here -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Enhanced CSS for Policy Components -->
+<style>
+    .policy-section {
+        padding: 3rem 2rem;
+        background-color: #f8f9fa;
+        margin-top: 3rem;
+        border-top: 1px solid #e9ecef;
+    }
+    
+    .policy-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .policy-heading {
+        text-align: center;
+        font-size: 1.8rem;
+        color: #333;
+        margin-bottom: 2.5rem;
+        position: relative;
+    }
+    
+    .policy-heading:after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+    
+    .policy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    
+    .policy-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+    }
+    
+    .policy-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .policy-icon {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(71, 181, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+    }
+    
+    .policy-icon svg {
+        color: var(--primary-color);
+    }
+    
+    .policy-card-title {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+    
+    .policy-card-desc {
+        color: #666;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+    
+    .policy-btn {
+        background-color: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        padding: 0.6rem 1.2rem;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .policy-btn:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    
+    /* Modal Styles (keep existing styles) */
+    .policy-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    
+    .policy-modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 2rem;
+        width: 80%;
+        max-width: 800px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        position: relative;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 1.8rem;
+        color: #aaa;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    
+    .close-modal:hover {
+        color: #333;
+    }
+    
+    #policy-title {
+        color: #333;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-color);
+    }
+    
+    #policy-content {
+        line-height: 1.6;
+        color: #555;
+    }
+    
+    #policy-content h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+    
+    #policy-content p {
+        margin-bottom: 1rem;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .policy-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        
+        .policy-card {
+            padding: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .policy-section {
+            padding: 2rem 1rem;
+        }
+        
+        .policy-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+</style>
+
+<!-- Keep the existing JavaScript for Policy Modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const policyLinks = document.querySelectorAll('.policy-link');
+        const policyCards = document.querySelectorAll('.policy-card');
+        const policyModal = document.getElementById('policy-modal');
+        const policyTitle = document.getElementById('policy-title');
+        const policyContent = document.getElementById('policy-content');
+        const closeModal = document.querySelector('.close-modal');
+        
+        // Policy content
+        const policies = {
+            refund: {
+                title: "Refund Policy",
+                content: `
+                    <h3>Standard Product Returns</h3>
+                    <p>This returns policy applies to products bought directly from our website. If you have purchased our products from another retailer then please contact them for their own returns and refund procedures.</p>
+                    
+                    <p>We are happy to refund or exchange any product returned within 14 days of purchase, if it is returned in its original state, unused, unopened with tamper seals in tact and in original packaging.</p>
+                    
+                    <p>Please contact us prior to returning your item to let us know to expect your return. Please include your order number in the package.</p>
+                    
+                    <h3>Processing Your Refund</h3>
+                    <p>Assuming the item(s) are in good, saleable condition we will then process your refund. Refunds are made to your original payment method and depending on your payment issuers policies, there may be a couple of days' delay in being credited.</p>
+                    
+                    <p>Unfortunately, we cannot accept returns on sale items or gift cards.</p>
+                    
+                    <h3>Damages and Issues</h3>
+                    <p>We try our best to ensure all items make it to you safely. However if you receive any items that are damaged or faulty on arrival then we will issue a replacement product free of charge or offer a refund. Please just let us know by contacting us.</p>
+                `
+            },
+            shipping: {
+                title: "Shipping Policy",
+                content: `
+                    <p>All orders are shipped within 24 to 48 hours of you placing the order using with Royal Mail service. Typical delivery time frame is between 2 to 4 business days however, you may receive your items much earlier. All orders are shipped with tracking number so you can track it every step of the way!</p>
+                    
+                    <p>Packages may be faced with delays beyond our control such as customs or postal delays.</p>
+                    
+                    <h3>Free Shipping</h3>
+                    <p>We offer free shipping on all orders over £20. Orders below this threshold will incur a shipping charge of £4.99.</p>
+                    
+                    <h3>International Shipping</h3>
+                    <p>We currently only ship within the United Kingdom. We hope to expand our shipping options in the future.</p>
+                `
+            },
+            returns: {
+                title: "Returns Process",
+                content: `
+                    <h3>How to Return an Item</h3>
+                    <p>1. Contact us at support@giftoutlet.co.uk to inform us about your return</p>
+                    <p>2. Include your order number and reason for return</p>
+                    <p>3. Package the item in its original packaging with all tags and seals intact</p>
+                    <p>4. Ship the item to our returns address (provided after you contact us)</p>
+                    <p>5. We'll process your return within 3-5 business days of receiving it</p>
+                    
+                    <h3>Subscription Orders</h3>
+                    <p>As we use a third party logistics company to deliver your products and orders are picked and packed within minutes of the orders being placed (during weekdays), we require a minimum of 24 hours' notice to cancel a subscription order. If you miss this cancelation window, you are still able to return the product(s) to us, in their original state using the Standard Product Returns procedure.</p>
+                `
+            },
+            terms: {
+                title: "Terms of Service",
+                content: `
+                    <h3>Overview</h3>
+                    <p>This website is operated by Gift Outlet. Throughout the site, the terms "we", "us" and "our" refer to Gift Outlet. Gift Outlet offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
+                    
+                    <h3>General Conditions</h3>
+                    <p>We reserve the right to refuse service to anyone for any reason at any time.</p>
+                    <p>You understand that your content (not including credit card information), may be transferred unencrypted and involve (a) transmissions over various networks; and (b) changes to conform and adapt to technical requirements of connecting networks or devices.</p>
+                    <p>You agree not to reproduce, duplicate, copy, sell, resell or exploit any portion of the Service, use of the Service, or access to the Service or any contact on the website through which the service is provided, without express written permission by us.</p>
+                    
+                    <h3>Accuracy, Completeness and Timeliness of Information</h3>
+                    <p>We are not responsible if information made available on this site is not accurate, complete or current. The material on this site is provided for general information only and should not be relied upon or used as the sole basis for making decisions without consulting primary, more accurate, more complete or more timely sources of information.</p>
+                `
+            }
+        };
+        
+        // Function to open modal
+        function openPolicyModal(policyType) {
+            const policy = policies[policyType];
+            
+            if (policy) {
+                policyTitle.textContent = policy.title;
+                policyContent.innerHTML = policy.content;
+                policyModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+            }
+        }
+        
+        // Open modal with button clicks
+        policyLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const policyType = this.getAttribute('data-policy');
+                openPolicyModal(policyType);
+            });
+        });
+        
+        // Make entire card clickable
+        policyCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Only trigger if the click wasn't on the button itself
+                if (!e.target.classList.contains('policy-btn')) {
+                    const policyType = this.getAttribute('data-policy');
+                    openPolicyModal(policyType);
+                }
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            policyModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+        
+        // Close modal if clicking outside content
+        window.addEventListener('click', function(e) {
+            if (e.target === policyModal) {
+                policyModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && policyModal.style.display === 'block') {
+                policyModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+</script>
 {% endblock %}
